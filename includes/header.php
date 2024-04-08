@@ -17,7 +17,7 @@
             <a href="login.php" class="traverse2">LogIn</a>
         </div>
         <div class="Signdiv">
-            <a href="login.php" class="traverse3">SignUp</a>
+            <a href="register.php" class="traverse3">SignUp</a>
         </div>
     </div>
 </div>

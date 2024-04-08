@@ -19,7 +19,7 @@ if (isset($_POST["Loginbut"])) {
     if ($nums == 0) {
         $message = "User not Found";
     } elseif (password_verify($pass, $counts[3])) {
-        echo "<script>window.location.href = 'mainpage.php';</script>";
+        echo "<script>window.location.href = 'WelcomePage.php';</script>";
         exit;
     } else {
         $message = "Password is incorrect";
@@ -38,15 +38,15 @@ if (isset($_POST['Registerbut'])) {
     $password = password_hash($passwordd, PASSWORD_DEFAULT);
 
 
+    $sqlins1 = "Insert into tbluserprofile(firstname,lastname,gender) values('" . $fname . "','" . $lname . "','" . $gender . "')";
+    mysqli_query($connection, $sqlins1);
 
-    $sqlins2 = "Select * from tbluseraccount where username='" . $username . "'";
+    $sqlins2 = "Select * from tbluseraccount where username='" . $username . "' AND emailadd='" . $email . "'";
     $res = mysqli_query($connection, $sqlins2);
     $nums = mysqli_num_rows($res);
 
 
     if ($nums == 0) {
-        $sqlins1 = "Insert into tbluserprofile(firstname,lastname,gender) values('" . $fname . "','" . $lname . "','" . $gender . "')";
-        mysqli_query($connection, $sqlins1);
         $sqlins3 = "Insert into tbluseraccount(emailadd,username,password) values('" . $email . "','" . $username . "','" . $password . "')";
         mysqli_query($connection, $sqlins3);
         $message = "User is Unique";
