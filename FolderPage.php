@@ -357,7 +357,8 @@
         }
 
 
-        .addquest {
+        .addquest,
+        .editquest {
             height: 600px;
             width: 900px;
             background-color: rgb(72, 1, 125);
@@ -514,24 +515,24 @@
     <div class="modal fade" id="EditTaskMe" tabindex="-1" role="dialog" aria-labelledby="showTasksLabel" aria-hidden="true" style="color: black;font-family: 'Dosis', sans-serif;">
         <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: fit-content;">
             <div class="modal-content" style="border-radius: 60px;">
-                <div class=addquest style="padding: 20px; justify-content: space-between;">
+                <div class=editquest style="padding: 20px; justify-content: space-between;">
                     <div style="display: flex; flex-direction: row; justify-content: space-between; width: 100%;">
                         <div style="display: flex; flex-direction: row; align-items: center; font-size: 15px;">
                             <div style="margin-right: 10px; color: white; font-weight: bold;">Title:</div>
                             <input type="text" placeholder="Quiz Title" style="border-radius: 100px;
-                            height: 30px; width: 150px;" class="quiztitle">
+                            height: 30px; width: 150px;" class="quiztitleedit">
                         </div>
 
                         <div style="display: flex; flex-direction: row; align-items: center;margin-top: 15px;">
                             <div style="margin-right: 10px; color: white; font-weight: bold;">Description:</div>
                             <textarea type="text" placeholder="Quiz Description" style="border-radius: 5px;
-                            height: 50px; width: 300px;" class="quizdescrip"></textarea>
+                            height: 50px; width: 300px;" class="quizdescripedit"></textarea>
                         </div>
 
                         <div style="display: flex; flex-direction: row; align-items: center;">
                             <div style="margin-right: 10px; color: white; font-weight: bold;">Type:</div>
                             <select style="border-radius: 100px;
-                            height: 30px;" class="quiztype">
+                            height: 30px;" class="quiztypeedit">
                                 <option value="---">---</option>
                                 <option value="Mult">Multiple Choice</option>
                                 <option value="Flash">FlashCard</option>
@@ -539,13 +540,13 @@
                         </div>
                     </div>
 
-                    <div class="Questcont" style="width: 100%; margin-top: 30px;">
+                    <div class="Questcontedit" style="width: 100%; margin-top: 30px;">
 
                     </div>
 
 
                     <div class="addSub" style="display: flex; flex-direction: row; margin-top: 30px;">
-                        <div class="EditFolderbut AddQuestion" style="margin-right: 20px; height: 50px; width:150px; margin-bottom: 0px;">Ok</div>
+                        <div class="EditFolderbut EditQuiz" style="margin-right: 20px; height: 50px; width:150px; margin-bottom: 0px;">Apply Changes</div>
                     </div>
 
                 </div>
@@ -640,15 +641,69 @@
                     }
 
                     var editme = document.querySelectorAll(".editme");
-                    for(var edt of editme){
+                    for (var edt of editme) {
                         console.log(edt.parentElement.parentElement.firstElementChild.firstElementChild.lastElementChild.innerText)
-                        if(edt.parentElement.parentElement.firstElementChild.firstElementChild.lastElementChild.innerText == "Mult"){
+                        if (edt.parentElement.parentElement.firstElementChild.firstElementChild.lastElementChild.innerText == "Mult") {
                             edt.style.opacity = "0";
-                        }
-                        else{
-                            editme.addEventListener("click",function(e){
-                                
-                            })
+                        } else {
+                            (function(edtp) {
+                                edtp.addEventListener("click", function(e) {
+                                    $.ajax({
+                                        url: "./api/getFlashCard.php",
+                                        method: "GET",
+                                        data: {
+                                            qid: parseInt(edtp.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText),
+                                        },
+                                        success: function(data) {
+                                            var handle = JSON.parse(data);
+                                            //console.log(handle)
+
+                                            var qtypeedit = document.querySelector(".quiztypeedit")
+                                            $(".quiztypeedit").val(edtp.parentElement.parentElement.firstElementChild.firstElementChild.lastElementChild.innerText);
+                                            qtypeedit.disabled = true;
+                                            console.log(edtp.parentElement.parentElement.previousElementSibling.innerText)
+                                            $(".quizdescripedit").val(edtp.parentElement.parentElement.previousElementSibling.innerText);
+
+                                            $(".quiztitleedit").val(edtp.parentElement.parentElement.previousElementSibling.previousElementSibling.lastElementChild.innerText);
+
+                                            localStorage.setItem("QuizId", parseInt(edtp.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText));
+                                            console.log(localStorage);
+
+                                            var questionCont = document.querySelector(".Questcontedit");
+                                            questionCont.innerText = ""
+
+                                            for (var hnd of handle) {
+                                                var questionCont = document.querySelector(".Questcontedit");
+
+                                                var divcreate = document.createElement("div");
+                                                questionCont.append(divcreate);
+
+                                                divcreate.innerHTML = `<div style="height: 200px;background-color: rgb(251, 144, 208); width: 100%; margin-bottom: 10px; border-radius: 30px; padding-top: 10px;
+padding-bottom: 10px; position:relative;">
+<div style="display: flex; flex-direction: row; align-items: center;">
+<div style = "display:flex; flex-direction:row; align-items:center;">
+<div class = "Qeditid" style = "margin-left: 30px;">${hnd["Question_Id"]}</div>
+<div style="color:rgb(72, 1, 125); font-weight: bold; font-size: 20px;">Question:</div>
+</div>
+
+<input type="text" class = "QuestionEditName" placeholder="Question" style="width: 600px; margin-left: 20px; border-radius: 1000px;
+font-size: 18px; height: 50px; padding-left: 10px; padding-right: 10px;" value = ${hnd["Question"]}> 
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 30px;">
+<div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-right: 30px;">
+<div style="font-size: 20px; color: rgb(72, 1, 125); font-weight: bold;  width: 35px; display: flex; flex-direction: row; justify-content: center;">Answer</div>
+<input type="text" placeholder="choice" style="width: 300px; margin-left: 20px; border-radius: 1000px;
+font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class = "FlEditAns" value = ${hnd["Answer"]}>
+</div>
+</div>
+</div>
+</div>`
+                                            }
+                                        }
+                                    })
+                                })
+                            })(edt);
                         }
                     }
 
@@ -695,6 +750,58 @@
             })
             $("#EditTaskMe").on('shown.bs.modal', function() {
                 $('#myInput').trigger('focus')
+            })
+
+            $(".EditQuiz").click(function(data) {
+                $.ajax({
+                    url: "./api/updateQuiz.php",
+                    method: "POST",
+                    data: {
+                        quizid: parseInt(localStorage.getItem("QuizId")),
+                        title: $(".quiztitleedit").val(),
+                        descme: $(".quizdescripedit").val()
+                    },
+                    success: function(data) {
+                        $('#EditTaskMe').modal('hide');
+                        getAllQuiz();
+                    }
+                })
+
+                var questid = document.querySelectorAll(".Qeditid");
+                var questname = document.querySelectorAll(".QuestionEditName");
+                var questans = document.querySelectorAll(".FlEditAns");
+                console.log(questid);
+                console.log(questname);
+                console.log(questans);
+
+                for (var ll = 0; ll < questid.length; ll++) {
+                    $.ajax({
+                        url: "./api/updateQuestion.php",
+                        method: "POST",
+                        data: {
+                            qstid: parseInt(questid[ll].innerText),
+                            qstname: questname[ll].value,
+                            qstans: questans[ll].value
+                        },
+                        success: function(data) {
+
+                        }
+                    })
+                }
+
+                /*$.ajax({
+                    url:"./api/updateQuiz.php",
+                    method:"POST",
+                    data:{
+                        quizid:parseInt(localStorage.getItem("QuizId")),
+                        title:$(".quiztitleedit").val(),
+                        descme:$(".quizdescripedit").val()
+                    },
+                    success:function(data){
+                        $('#EditTaskMe').modal('hide');
+                        getAllQuiz();
+                    }
+                })*/
             })
 
             $(".AddQuestion").click(function(e) {
@@ -872,37 +979,39 @@
 
                                             console.log("")
 
-                                            var optnlist = [optn1,optn2,optn3,optn4];
+                                            var optnlist = [optn1, optn2, optn3, optn4];
 
-                                            (function(optnlistme){$.ajax({
-                                                url: "./api/addQuestions.php",
-                                                method: "POST",
-                                                data: {
-                                                    quest: qq.value,
-                                                    ans: answerme,
-                                                    QuizId: dat
-                                                },
-                                                success: function(data) {
+                                            (function(optnlistme) {
+                                                $.ajax({
+                                                    url: "./api/addQuestions.php",
+                                                    method: "POST",
+                                                    data: {
+                                                        quest: qq.value,
+                                                        ans: answerme,
+                                                        QuizId: dat
+                                                    },
+                                                    success: function(data) {
 
-                                                    var datpars = parseInt(data);
+                                                        var datpars = parseInt(data);
 
-                                                    for(var obb of optnlistme){
-                                                        console.log(obb);
-                                                        $.ajax({
-                                                            url: "./api/addOptions.php",
-                                                            method: "POST",
-                                                            data: {
-                                                                option: obb,
-                                                                QuestId: datpars
-                                                            },
-                                                            success: function(data) {
+                                                        for (var obb of optnlistme) {
+                                                            console.log(obb);
+                                                            $.ajax({
+                                                                url: "./api/addOptions.php",
+                                                                method: "POST",
+                                                                data: {
+                                                                    option: obb,
+                                                                    QuestId: datpars
+                                                                },
+                                                                success: function(data) {
 
-                                                            }
-                                                        })
+                                                                }
+                                                            })
+                                                        }
+
                                                     }
-
-                                                }
-                                            })})(optnlist)
+                                                })
+                                            })(optnlist)
 
 
                                         }
@@ -926,8 +1035,7 @@
                                                     ans: answerme,
                                                     QuizId: dat
                                                 },
-                                                success: function(data) {
-                                                }                                               
+                                                success: function(data) {}
                                             })
                                         }
                                     }
@@ -936,7 +1044,8 @@
 
                             console.log(questiontitle.length)
 
-                            //$('#showTasks').modal('hide');
+                            $('#showTasks').modal('hide');
+                            getAllQuiz();
 
                         })
 
@@ -1242,6 +1351,73 @@
                                         }
                                     })
                                 })
+                            }
+
+                            var editme = document.querySelectorAll(".editme");
+                            for (var edt of editme) {
+                                console.log(edt.parentElement.parentElement.firstElementChild.firstElementChild.lastElementChild.innerText)
+                                if (edt.parentElement.parentElement.firstElementChild.firstElementChild.lastElementChild.innerText == "Mult") {
+                                    edt.style.opacity = "0";
+                                } else {
+                                    (function(edtp) {
+                                        edtp.addEventListener("click", function(e) {
+                                            $.ajax({
+                                                url: "./api/getFlashCard.php",
+                                                method: "GET",
+                                                data: {
+                                                    qid: parseInt(edtp.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText),
+                                                },
+                                                success: function(data) {
+                                                    var handle = JSON.parse(data);
+                                                    //console.log(handle)
+
+                                                    var qtypeedit = document.querySelector(".quiztypeedit")
+                                                    $(".quiztypeedit").val(edtp.parentElement.parentElement.firstElementChild.firstElementChild.lastElementChild.innerText);
+                                                    qtypeedit.disabled = true;
+                                                    console.log(edtp.parentElement.parentElement.previousElementSibling.innerText)
+                                                    $(".quizdescripedit").val(edtp.parentElement.parentElement.previousElementSibling.innerText);
+
+                                                    $(".quiztitleedit").val(edtp.parentElement.parentElement.previousElementSibling.previousElementSibling.lastElementChild.innerText);
+
+                                                    localStorage.setItem("QuizId", parseInt(edtp.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText));
+                                                    console.log(localStorage);
+
+                                                    var questionCont = document.querySelector(".Questcontedit");
+                                                    questionCont.innerText = ""
+
+                                                    for (var hnd of handle) {
+                                                        var questionCont = document.querySelector(".Questcontedit");
+
+                                                        var divcreate = document.createElement("div");
+                                                        questionCont.append(divcreate);
+
+                                                        divcreate.innerHTML = `<div style="height: 200px;background-color: rgb(251, 144, 208); width: 100%; margin-bottom: 10px; border-radius: 30px; padding-top: 10px;
+padding-bottom: 10px; position:relative;">
+<div style="display: flex; flex-direction: row; align-items: center;">
+<div style = "display:flex; flex-direction:row; align-items:center;">
+<div class = "Qeditid" style = "margin-left: 30px;">${hnd["Question_Id"]}</div>
+<div style="color:rgb(72, 1, 125); font-weight: bold; font-size: 20px;">Question:</div>
+</div>
+
+<input type="text" class = "QuestionEditName" placeholder="Question" style="width: 600px; margin-left: 20px; border-radius: 1000px;
+font-size: 18px; height: 50px; padding-left: 10px; padding-right: 10px;" value = ${hnd["Question"]}> 
+</div>
+<div style="display: flex; flex-direction: column; align-items: center; margin-top: 30px;">
+<div style="display: flex; flex-direction: row;">
+<div style="display: flex; flex-direction: row; justify-content: center; align-items: center; margin-right: 30px;">
+<div style="font-size: 20px; color: rgb(72, 1, 125); font-weight: bold;  width: 35px; display: flex; flex-direction: row; justify-content: center;">Answer</div>
+<input type="text" placeholder="choice" style="width: 300px; margin-left: 20px; border-radius: 1000px;
+font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class = "FlEditAns" value = ${hnd["Answer"]}>
+</div>
+</div>
+</div>
+</div>`
+                                                    }
+                                                }
+                                            })
+                                        })
+                                    })(edt);
+                                }
                             }
                         }
                     })
