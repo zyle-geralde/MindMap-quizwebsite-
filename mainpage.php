@@ -43,7 +43,7 @@
 
         .showquiz,
         .showquiz2 {
-            color: #603F8B;
+            color: white;
             ;
             text-decoration: none;
             margin-right: 10px;
@@ -133,7 +133,7 @@
 
         .mainFolderCont {
             margin-top: 170px;
-            margin-left: 260px;
+            margin-left: 10px;
             margin-right: 10px;
             display: flex;
             flex-direction: column;
@@ -145,7 +145,8 @@
             width: 100%;
         }
 
-        .AddFolder {
+        .AddFolder,
+        .AddQuiz {
             background-color: rgb(210, 63, 151);
             border-style: solid;
             border-width: 2px;
@@ -171,6 +172,16 @@
         }
 
         .AddFolder:active {
+            transition: 0.0s;
+            background-color: rgb(233, 126, 190);
+        }
+
+        .AddQuiz:hover {
+            height: 40px;
+            width: 130px;
+        }
+
+        .AddQuiz:active {
             transition: 0.0s;
             background-color: rgb(233, 126, 190);
         }
@@ -215,7 +226,8 @@
         }
 
         .AddFolderbut,
-        .EditFolderbut {
+        .EditFolderbut,
+        .AddQuiz {
             background-color: rgb(210, 63, 151);
             border-style: solid;
             border-width: 2px;
@@ -256,6 +268,8 @@
         }
 
 
+
+
         .CancelFolderbut {
             background-color: rgb(210, 63, 151);
             border-style: solid;
@@ -292,6 +306,12 @@
             row-gap: 10px;
             column-gap: 10px;
             justify-content: center;
+        }
+
+        .QuizContainer {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .folderItemcont {
@@ -335,6 +355,31 @@
         .numcount {
             margin-left: 10px;
         }
+
+
+        .addquest {
+            height: 600px;
+            width: 900px;
+            background-color: rgb(72, 1, 125);
+            border-radius: 50px;
+            border-style: double;
+            border-color: rgb(253, 70, 167);
+            border-width: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: auto;
+
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
     </style>
 
 </head>
@@ -356,14 +401,19 @@
                 margin-bottom: 20px;">
                     <div style="color: rgb(255, 221, 227); font-size: 20px; font-weight: bold; margin-right: 20px;">
                         Username: </div>
-                    <div style="color: white;" class="usernameh">jjjj</div>
+                    <div style="color: white;" class="HoldUName"></div>
                 </div>
                 <div style="display: flex; flex-direction: row; align-items: center; margin-left: 8px;">
                     <div style="color: rgb(255, 221, 227); font-size: 20px; font-weight: bold; margin-right: 20px;">
                         UserId: </div>
-                    <div style="color: white;" class="idh">0001</div>
+                    <div style="color: white;" class="HoldUId"></div>
                 </div>
             </div>
+        </div>
+
+        <div style="display: flex; flex-direction: row;">
+            <p class="showquiz">All Folder</p>
+            <p class="showquiz2">Your Folder</p>
         </div>
 
         <div style="display: flex; flex-direction: row;">
@@ -373,34 +423,21 @@
                     <i class="fas fa-search"></i>
                 </div>
             </div>
-
-
         </div>
-    </div>
 
-    <div class="mainCont">
-        <div style="position: absolute; right: 0px; left: 0px; border-top-style: solid; bottom: 90px;border-color:#b1507c;">
-
-        </div>
-        <div style="display: flex; flex-direction: column; justify-content: space-between;">
-            <div style="display: flex; flex-direction: column;">
-                <p class="showquiz">All Quizzes</p>
-                <p class="showquiz2">Your Quizzes</p>
-            </div>
-        </div>
         <div style="display: flex; flex-direction: row; justify-content: space-between;
-            width: 150px; align-items: center;">
+        width: 150px; align-items: center;">
             <div class="Logbut" style="margin-right: 20px;">
                 Log Out
             </div>
             <div style="background-color: #603F8B; color: white;height: 30px; width: 30px;
-                display: flex; flex-direction: row; align-items: center; justify-content: center; border-radius: 100px;
-                cursor: pointer;">
+            display: flex; flex-direction: row; align-items: center; justify-content: center; border-radius: 100px;
+            cursor: pointer;">
                 <i class="fa fa-level-up"></i>
             </div>
         </div>
-
     </div>
+
 
     <div class="mainFolderCont">
         <button type="button" data-bs-toggle="modal" data-bs-target="#signupmodal" class="AddFolder">
@@ -409,6 +446,7 @@
         <div class="FolderCont">
         </div>
     </div>
+
 
 
     <div class="modal fade" id="signupmodal" tabindex="-1" role="dialog" aria-labelledby="signupmodalLabel" aria-hidden="true" style="color: black;font-family: 'Dosis', sans-serif;">
@@ -476,13 +514,31 @@
         </div>
     </div>
 
+
+    <div class="modal fade" id="showTasks" tabindex="-1" role="dialog" aria-labelledby="showTasksLabel" aria-hidden="true" style="color: black;font-family: 'Dosis', sans-serif;">
+        <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: fit-content;">
+            <div class=addquest>
+
+            </div>
+        </div>
+    </div>
+
     <script>
         function getAllFolder() {
+            var storage = localStorage;
+            console.log(storage);
+
+            $(".HoldUName").text(localStorage.getItem("UserName"));
+            $(".HoldUId").text(localStorage.getItem("UserId"));
             $.ajax({
                 url: "./api/GetAllFolder.php",
                 method: "GET",
+                data: {
+                    userId: localStorage.getItem("UserId")
+                },
                 success: function(data) {
                     var data = JSON.parse(data);
+                    console.log(data)
                     var Foldercont = document.querySelector(".FolderCont");
                     Foldercont.innerText = "";
                     for (a of data) {
@@ -490,12 +546,23 @@
                         var folditem = document.createElement("div");
                         folditem.setAttribute("class", "folderItemcont");
                         addhere.insertBefore(folditem, addhere.firstChild);
+                        var fid = a["Folder_Id"];
+                        var fname = a["Folder_Name"];
 
                         var niddiv = document.createElement("div");
                         niddiv.style.display = "flex";
                         niddiv.style.flexDirection = "row";
                         niddiv.style.alignItems = "center";
                         folditem.append(niddiv);
+
+                            //Immediately invoked function
+                        (function(fid, fname) {
+                            niddiv.addEventListener("click", function(e) {
+                                localStorage.setItem("FolderId", fid);
+                                localStorage.setItem("FolderName", fname);
+                                window.location.href = "./FolderPage.php"
+                            })
+                        })(fid, fname);
 
                         var idcont = document.createElement("div");
                         idcont.setAttribute("class", "folderid");
@@ -510,9 +577,18 @@
 
 
                         var folddesc = document.createElement("div");
+                        folddesc.innerText = a["Folder_Description"]
                         folddesc.setAttribute("class", "Folddesc");
                         folditem.append(folddesc);
-                        folddesc.innerText = a["Folder_Description"]
+
+
+                        (function(fid, fname) {
+                            folddesc.addEventListener("click", function(e) {
+                                localStorage.setItem("FolderId", fid);
+                                localStorage.setItem("FolderName", fname);
+                                window.location.href = "./FolderPage.php"
+                            })
+                        })(fid, fname);
 
 
                         var numcont = document.createElement("div");
@@ -540,43 +616,48 @@
                         iconcont.style.flexDirection = "row";
                         divcont.append(iconcont);
 
-                        var trash = document.createElement("i");
-                        trash.setAttribute("class", "editme fa-solid fa-trash");
-                        trash.style.cursor = "pointer"
-                        iconcont.append(trash)
-                        trash.addEventListener("click", function(e) {
-                            var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
-                            $.ajax({
-                                url: "./api/deleteFolder.php",
-                                method: "POST",
-                                data: {
-                                    id: idd
-                                },
-                                success: function(e) {
-                                    getAllFolder();
-                                }
+
+                        if (a.hasOwnProperty("profid")) {
+                            var trash = document.createElement("i");
+                            trash.setAttribute("class", "editme fa-solid fa-trash");
+                            trash.style.cursor = "pointer"
+                            iconcont.append(trash)
+                            trash.addEventListener("click", function(e) {
+                                var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
+                                $.ajax({
+                                    url: "./api/deleteFolder.php",
+                                    method: "POST",
+                                    data: {
+                                        id: idd
+                                    },
+                                    success: function(e) {
+                                        getAllFolder();
+                                    }
+                                })
                             })
-                        })
 
-                        var edit = document.createElement("i");
-                        edit.setAttribute("class", "editme fa-solid fa-pen-to-square");
-                        edit.style.cursor = "pointer"
-                        edit.style.marginLeft = "10px"
-                        edit.setAttribute("data-bs-toggle", "modal");
-                        edit.setAttribute("data-bs-target", "#editFoldermodal");
-                        iconcont.append(edit)
+                            var edit = document.createElement("i");
+                            edit.setAttribute("class", "editme fa-solid fa-pen-to-square");
+                            edit.style.cursor = "pointer"
+                            edit.style.marginLeft = "10px"
+                            edit.setAttribute("data-bs-toggle", "modal");
+                            edit.setAttribute("data-bs-target", "#editFoldermodal");
+                            iconcont.append(edit)
 
-                        edit.addEventListener("click", function(e) {
-                            var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
-                            var ename = document.querySelector(".Eqnameinp");
-                            var edesc = document.querySelector(".Eqdecinp");
-                            var eid = document.querySelector(".Idinp");
+                            edit.addEventListener("click", function(e) {
+                                var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
+                                var ename = document.querySelector(".Eqnameinp");
+                                var edesc = document.querySelector(".Eqdecinp");
+                                var eid = document.querySelector(".Idinp");
 
-                            ename.value = e.target.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.innerText
-                            edesc.value = e.target.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.innerText
-                            eid.value = idd;
+                                ename.value = e.target.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.innerText
+                                edesc.value = e.target.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.innerText
+                                eid.value = idd;
 
-                        })
+                            })
+                        } else {
+
+                        }
 
                     }
                 }
@@ -591,6 +672,9 @@
             $('#editFoldermodal').on('shown.bs.modal', function() {
                 $('#myInput').trigger('focus')
             })
+            $('#showTasks').on('shown.bs.modal', function() {
+                $('#myInput').trigger('focus')
+            })
             $(".AddFolderbut").click(function(e) {
                 if ($(".qnameinp").val().trim() == "" || $(".qdecinp").val().trim() == "") {
                     return;
@@ -601,7 +685,8 @@
                     data: {
                         name: $(".qnameinp").val(),
                         description: $(".qdecinp").val(),
-                        items: 0
+                        items: 0,
+                        userId: localStorage.getItem("UserId"),
                     },
                     success: function(data) {
                         console.log("success");
@@ -620,7 +705,8 @@
                         url: "./api/GetFolder.php",
                         method: "GET",
                         data: {
-                            name: $(".fnameinpp").val()
+                            name: $(".fnameinpp").val(),
+                            userId: localStorage.getItem("UserId")
                         },
                         success: function(data) {
                             if (data.length == 0) {
@@ -636,11 +722,23 @@
                                 folditem.setAttribute("class", "folderItemcont");
                                 addhere.insertBefore(folditem, addhere.firstChild);
 
+                                var fid = a["Folder_Id"];
+                                var fname = a["Folder_Name"];
+
                                 var niddiv = document.createElement("div");
                                 niddiv.style.display = "flex";
                                 niddiv.style.flexDirection = "row";
                                 niddiv.style.alignItems = "center";
                                 folditem.append(niddiv);
+
+                                                                //Immediately invoked function
+                                (function(fid, fname) {
+                                    niddiv.addEventListener("click", function(e) {
+                                        localStorage.setItem("FolderId", fid);
+                                        localStorage.setItem("FolderName", fname);
+                                        window.location.href = "./FolderPage.php"
+                                    })
+                                })(fid, fname);
 
                                 var idcont = document.createElement("div");
                                 idcont.setAttribute("class", "folderid");
@@ -655,9 +753,17 @@
 
 
                                 var folddesc = document.createElement("div");
+                                folddesc.innerText = a["Folder_Description"]
                                 folddesc.setAttribute("class", "Folddesc");
                                 folditem.append(folddesc);
-                                folddesc.innerText = a["Folder_Description"]
+
+                                (function(fid, fname) {
+                                    folddesc.addEventListener("click", function(e) {
+                                        localStorage.setItem("FolderId", fid);
+                                        localStorage.setItem("FolderName", fname);
+                                        window.location.href = "./FolderPage.php"
+                                    })
+                                })(fid, fname);
 
 
                                 var numcont = document.createElement("div");
@@ -685,43 +791,47 @@
                                 iconcont.style.flexDirection = "row";
                                 divcont.append(iconcont);
 
-                                var trash = document.createElement("i");
-                                trash.setAttribute("class", "editme fa-solid fa-trash");
-                                trash.style.cursor = "pointer"
-                                iconcont.append(trash)
-                                trash.addEventListener("click", function(e) {
-                                    var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
-                                    $.ajax({
-                                        url: "./api/deleteFolder.php",
-                                        method: "POST",
-                                        data: {
-                                            id: idd
-                                        },
-                                        success: function(e) {
-                                            getAllFolder();
-                                        }
+                                if (a.hasOwnProperty("profid")) {
+                                    var trash = document.createElement("i");
+                                    trash.setAttribute("class", "editme fa-solid fa-trash");
+                                    trash.style.cursor = "pointer"
+                                    iconcont.append(trash)
+                                    trash.addEventListener("click", function(e) {
+                                        var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
+                                        $.ajax({
+                                            url: "./api/deleteFolder.php",
+                                            method: "POST",
+                                            data: {
+                                                id: idd
+                                            },
+                                            success: function(e) {
+                                                getAllFolder();
+                                            }
+                                        })
                                     })
-                                })
 
-                                var edit = document.createElement("i");
-                                edit.setAttribute("class", "editme fa-solid fa-pen-to-square");
-                                edit.style.cursor = "pointer"
-                                edit.style.marginLeft = "10px"
-                                edit.setAttribute("data-bs-toggle", "modal");
-                                edit.setAttribute("data-bs-target", "#editFoldermodal");
-                                iconcont.append(edit)
+                                    var edit = document.createElement("i");
+                                    edit.setAttribute("class", "editme fa-solid fa-pen-to-square");
+                                    edit.style.cursor = "pointer"
+                                    edit.style.marginLeft = "10px"
+                                    edit.setAttribute("data-bs-toggle", "modal");
+                                    edit.setAttribute("data-bs-target", "#editFoldermodal");
+                                    iconcont.append(edit)
 
-                                edit.addEventListener("click", function(e) {
-                                    var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
-                                    var ename = document.querySelector(".Eqnameinp");
-                                    var edesc = document.querySelector(".Eqdecinp");
-                                    var eid = document.querySelector(".Idinp");
+                                    edit.addEventListener("click", function(e) {
+                                        var idd = parseInt(e.target.parentElement.parentElement.parentElement.firstElementChild.firstElementChild.innerText);
+                                        var ename = document.querySelector(".Eqnameinp");
+                                        var edesc = document.querySelector(".Eqdecinp");
+                                        var eid = document.querySelector(".Idinp");
 
-                                    ename.value = e.target.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.innerText
-                                    edesc.value = e.target.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.innerText
-                                    eid.value = idd;
+                                        ename.value = e.target.parentElement.parentElement.parentElement.firstElementChild.lastElementChild.innerText
+                                        edesc.value = e.target.parentElement.parentElement.parentElement.firstElementChild.nextElementSibling.innerText
+                                        eid.value = idd;
 
-                                })
+                                    })
+                                } else {
+
+                                }
 
                             }
                         }
@@ -733,18 +843,20 @@
                 var Idme = parseInt($(".Idinp").val());
                 var newname = $(".Eqnameinp").val();
                 var newdesc = $(".Eqdecinp").val();
-                console.log(Idme,newname.newdesc)
+                console.log(Idme, newname.newdesc)
 
                 if ($(".Eqnameinp").val().trim() == "" || $(".Eqdecinp").val().trim() == "") {
                     return;
                 }
                 $.ajax({
-                    url:"./api/updateFolder.php",
-                    method:"POST",
-                    data:{name:newname,
-                    desc:newdesc,
-                    id:Idme},
-                    success:function(data){
+                    url: "./api/updateFolder.php",
+                    method: "POST",
+                    data: {
+                        name: newname,
+                        desc: newdesc,
+                        id: Idme
+                    },
+                    success: function(data) {
                         getAllFolder();
                     }
                 })

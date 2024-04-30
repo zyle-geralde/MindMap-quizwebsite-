@@ -19,7 +19,11 @@ if (isset($_POST["Loginbut"])) {
     if ($nums == 0) {
         $message = "User not Found";
     } elseif (password_verify($pass, $counts[3])) {
-        echo "<script>window.location.href = 'mainpage.php';</script>";
+        echo "<script>
+        localStorage.setItem('UserId',".$counts[0].");
+        localStorage.setItem('UserName','".$counts[2]."');
+        window.location.href = 'mainpage.php';
+        </script>";
         exit;
     } else {
         $message = "Password is incorrect";
