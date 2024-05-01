@@ -412,10 +412,6 @@
             </div>
         </div>
 
-        <div style="display: flex; flex-direction: row;">
-            <p class="showquiz">All Folder</p>
-            <p class="showquiz2">Your Folder</p>
-        </div>
 
         <div style="display: flex; flex-direction: row;">
             <div style="display: flex; flex-direction: row;">
@@ -442,13 +438,17 @@
 
     <div class="mainFolderCont" style="align-items: start;">
         <div style="display: flex; flex-direction: column; margin-left: 30px;">
+            <a style="font-size: 20px; color: rgb(255, 221, 227); background-color: #f4519f;
+            width: fit-content; padding: 5px 20px; border-radius: 1000px; border-style: solid; border-color:#603F8B;
+            text-decoration: none;"
+            href = "mainpage.php">Back</a>
             <div style="display: flex; flex-direction: row; align-items: center;">
-                <div style="font-size: 20px;">Folder Id:</div>
-                <div style="font-size: 20px;" class="IdHold"></div>
+                <div style="font-size: 20px; color: rgb(255, 221, 227);">Folder Id:</div>
+                <div style="font-size: 20px; color: white;" class="IdHold"></div>
             </div>
             <div style="display: flex; flex-direction: row; align-items: center;">
-                <div style="font-size: 20px;">Folder Name:</div>
-                <div style="font-size: 20px; width: 500px; overflow-x: auto; white-space: nowrap;" class="NameHold">
+                <div style="font-size: 20px; color: rgb(255, 221, 227);">Folder Name:</div>
+                <div style="font-size: 20px; width: 500px; overflow-x: auto; white-space: nowrap; color: white;" class="NameHold">
                 </div>
             </div>
         </div>
@@ -582,14 +582,14 @@
                 flex-direction: row;">
                     <div style="width: 70%; border-right-style: solid;
                     border-color:#f698c5; display: flex; flex-direction: column; justify-content: center;">
-                        <div style = "display:flex; flex-direction:row; align-items:center">
+                        <div style = "display:flex; flex-direction:row; align-items:center" class = "OpenTaskhead">
                             <div style = "margin-left:10px;">${a["QuizContainer_Id"]}</div>
                             <div style="overflow-y: auto; font-size: 25px; white-space:nowrap; margin-left: 10px;
                                 margin-right: 10px;">${a["Quiz_Name"]}
                             </div>
                         </div>
                         <div style="overflow-x: auto; font-size: 15px; margin-left: 10px; margin-top: 10px; height: 110px;
-                        background-color: #A16AE8; margin-right: 10px; word-break: break-all; border-radius: 5px; padding: 5px;">
+                        background-color: #A16AE8; margin-right: 10px; word-break: break-all; border-radius: 5px; padding: 5px;" class = "OpenBodyQuiz">
                             ${a["Quiz_Description"]}
                         </div>
 
@@ -620,6 +620,36 @@
                     <div>
                     </div>
                 </div>`
+                    }
+
+                    var openhead = document.querySelectorAll(".OpenTaskhead");
+                    var openbody = document.querySelectorAll(".OpenBodyQuiz");
+                    for (var opnh of openhead) {
+                        (function(opnhh) {
+                            opnhh.addEventListener("click", function(e) {
+                                if (opnhh.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.lastElementChild.innerText == "Mult") {
+                                    localStorage.setItem("QuizId", opnhh.firstElementChild.innerText)
+                                    window.location.href = "./AnswerMult.php"
+                                } else {
+                                    localStorage.setItem("QuizId", opnhh.firstElementChild.innerText)
+                                    window.location.href = "./FlashCardAns.php"
+                                }
+                            })
+                        })(opnh)
+                    }
+
+                    for (var opnb of openbody) {
+                        (function(opnbb) {
+                            opnbb.addEventListener("click", function(e) {
+                                if (opnbb.nextElementSibling.firstElementChild.firstElementChild.lastElementChild.innerText == "Mult") {
+                                    localStorage.setItem("QuizId", opnbb.previousElementSibling.firstElementChild.innerText)
+                                    window.location.href = "./AnswerMult.php"
+                                } else {
+                                    localStorage.setItem("QuizId", opnbb.previousElementSibling.firstElementChild.innerText)
+                                    window.location.href = "./FlashCardAns.php"
+                                }
+                            })
+                        })(opnb)
                     }
 
                     var trashcan = document.querySelectorAll(".trashme");
@@ -996,17 +1026,17 @@ font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class =
 
                                                         for (var obb of optnlistme) {
                                                             console.log(obb);
-                                                            $.ajax({
+                                                            (function(obbo){$.ajax({
                                                                 url: "./api/addOptions.php",
                                                                 method: "POST",
                                                                 data: {
-                                                                    option: obb,
+                                                                    option: obbo,
                                                                     QuestId: datpars
                                                                 },
                                                                 success: function(data) {
 
                                                                 }
-                                                            })
+                                                            })})(obb);
                                                         }
 
                                                     }
@@ -1294,14 +1324,14 @@ font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class =
                 flex-direction: row;">
                     <div style="width: 70%; border-right-style: solid;
                     border-color:#f698c5; display: flex; flex-direction: column; justify-content: center;">
-                        <div style = "display:flex; flex-direction:row; align-items:center">
+                        <div style = "display:flex; flex-direction:row; align-items:center" class = "OpenTaskhead">
                             <div style = "margin-left:10px;">${a["QuizContainer_Id"]}</div>
                             <div style="overflow-y: auto; font-size: 25px; white-space:nowrap; margin-left: 10px;
                                 margin-right: 10px;">${a["Quiz_Name"]}
                             </div>
                         </div>
                         <div style="overflow-x: auto; font-size: 15px; margin-left: 10px; margin-top: 10px; height: 110px;
-                        background-color: #A16AE8; margin-right: 10px; word-break: break-all; border-radius: 5px; padding: 5px;">
+                        background-color: #A16AE8; margin-right: 10px; word-break: break-all; border-radius: 5px; padding: 5px;" class = "OpenBodyQuiz">
                             ${a["Quiz_Description"]}
                         </div>
 
@@ -1334,6 +1364,37 @@ font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class =
                 </div>`
 
                             }
+
+                            var openhead = document.querySelectorAll(".OpenTaskhead");
+                            var openbody = document.querySelectorAll(".OpenBodyQuiz");
+                            for (var opnh of openhead) {
+                                (function(opnhh) {
+                                    opnhh.addEventListener("click", function(e) {
+                                        if (opnhh.nextElementSibling.nextElementSibling.firstElementChild.firstElementChild.lastElementChild.innerText == "Mult") {
+                                            localStorage.setItem("QuizId", opnhh.firstElementChild.innerText)
+                                            window.location.href = "./AnswerMult.php"
+                                        } else {
+                                            localStorage.setItem("QuizId", opnhh.firstElementChild.innerText)
+                                            window.location.href = "./FlashCardAns.php"
+                                        }
+                                    })
+                                })(opnh)
+                            }
+
+                            for (var opnb of openbody) {
+                                (function(opnbb) {
+                                    opnbb.addEventListener("click", function(e) {
+                                        if (opnbb.nextElementSibling.firstElementChild.firstElementChild.lastElementChild.innerText == "Mult") {
+                                            localStorage.setItem("QuizId", opnbb.previousElementSibling.firstElementChild.innerText)
+                                            window.location.href = "./AnswerMult.php"
+                                        } else {
+                                            localStorage.setItem("QuizId", opnbb.previousElementSibling.firstElementChild.innerText)
+                                            window.location.href = "./FlashCardAns.php"
+                                        }
+                                    })
+                                })(opnb)
+                            }
+
                             var trashcan = document.querySelectorAll(".trashme");
                             for (var a of trashcan) {
                                 console.log(a);

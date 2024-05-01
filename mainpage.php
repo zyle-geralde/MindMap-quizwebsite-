@@ -412,11 +412,6 @@
         </div>
 
         <div style="display: flex; flex-direction: row;">
-            <p class="showquiz">All Folder</p>
-            <p class="showquiz2">Your Folder</p>
-        </div>
-
-        <div style="display: flex; flex-direction: row;">
             <div style="display: flex; flex-direction: row;">
                 <input class="fnameinpp" type="text" name="qsearch" placeholder="Quiz name" required>
                 <div class="Submitbut" style="margin-right: 20px;">
@@ -861,6 +856,10 @@
                     }
                 })
 
+            })
+
+            $(".Logbut").click(function(e){
+                window.location.href = "./login.php";
             })
         })
     </script>
