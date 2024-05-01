@@ -604,10 +604,6 @@
                                     <div>Items: </div>
                                     <div>${a["Number_of_Items"]}</div>
                                 </div>
-                                <div style="display: flex; flex-direction: row; margin-right: 10px;">
-                                    <div>Recent Score: </div>
-                                    <div>0</div>
-                                </div>
                             </div>
     
                             <div style="display: flex; flex-direction: row; ${(a.hasOwnProperty("profid")) ? 'opacity:1;' : 'opacity:0;'}">
@@ -768,6 +764,10 @@ font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class =
             $(".IdHold").text(localStorage.getItem("FolderId"))
             $(".NameHold").text(localStorage.getItem("FolderName"))
 
+            $(".Logbut").click(function(e){
+                window.location.href = "./login.php";
+            })
+
 
             $('#signupmodal').on('shown.bs.modal', function() {
                 $('#myInput').trigger('focus')
@@ -818,20 +818,6 @@ font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class =
                         }
                     })
                 }
-
-                /*$.ajax({
-                    url:"./api/updateQuiz.php",
-                    method:"POST",
-                    data:{
-                        quizid:parseInt(localStorage.getItem("QuizId")),
-                        title:$(".quiztitleedit").val(),
-                        descme:$(".quizdescripedit").val()
-                    },
-                    success:function(data){
-                        $('#EditTaskMe').modal('hide');
-                        getAllQuiz();
-                    }
-                })*/
             })
 
             $(".AddQuestion").click(function(e) {
@@ -1345,10 +1331,6 @@ font-size: 20px; height: 50px; padding-left: 10px; padding-right: 10px;" class =
                                 <div style="display: flex; flex-direction: row; margin-right: 10px;">
                                     <div>Items: </div>
                                     <div>${a["Number_of_Items"]}</div>
-                                </div>
-                                <div style="display: flex; flex-direction: row; margin-right: 10px;">
-                                    <div>Recent Score: </div>
-                                    <div>0</div>
                                 </div>
                             </div>
     
