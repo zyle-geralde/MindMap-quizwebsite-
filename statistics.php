@@ -50,10 +50,54 @@ include "connect.php"
 
     <div style="display: grid; grid-template-columns: 400px 400px; background-color: white; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px">
         <div>TOTAL NUMBER OF FOLDERS</div>
-        <div>AVG OF FOLDERS WITH NO QUIZZES</div>
+        <div>AVG OF FOLDERS WITH </div>
     </div>
 
     <div style="display: grid; grid-template-columns:  400px 400px; background-color: white;min-height:10px; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px" class="stat3">
+    </div>
+
+    <div class="centerme">
+        <div style = "color: rgb(255, 238, 253); font-size:50px; margin-top: 30px;">STAT 4: total number of folders with quizes/average number of folders with quizes.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 400px 400px; background-color: white; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px">
+        <div>TOTAL NUMBER OF FOLDERS WITH QUIZZES</div>
+        <div>AVG OF FOLDERS WITH QUIZZES</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns:  400px 400px; background-color: white;min-height:10px; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px" class="stat4">
+        <div>Total_Folders_With_Zero_Items</div>
+        <div>Average_Number_of_Items</div>
+    </div>
+
+    
+    <div class="centerme">
+        <div style = "color: rgb(255, 238, 253); font-size:50px; margin-top: 30px;">STAT 5: total number of quizzes with odd number of items/average number of quizzes with odd number of items.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 400px 400px; background-color: white; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px">
+        <div>total number of quizzes with odd number of items</div>
+        <div>average number of quizzes with odd number of items.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns:  400px 400px; background-color: white;min-height:10px; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px" class="stat5">
+        <div>Total_Quizzes_With_Odd_Items</div>
+        <div>Average_Number_of_Quizzes_With_Odd_Items</div>
+    </div>
+
+        
+    <div class="centerme">
+        <div style = "color: rgb(255, 238, 253); font-size:50px; margin-top: 30px;">STAT 6: total number of quizzes with even number of items/average number of quizzess with even number of items.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 400px 400px; background-color: white; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px">
+        <div>total number of quizzes with even number of items</div>
+        <div>average number of quizzess with even number of items.</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns:  400px 400px; background-color: white;min-height:10px; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px" class="stat6">
+        <div>Total_Quizzes_With_Even_Items</div>
+        <div>Average_Number_of_Quizzes_With_Even_Items</div>
     </div>
 
 
@@ -110,6 +154,63 @@ include "connect.php"
                         b.innerText = sample["average_folders"];
                         classadd3.append(b);
                     }
+                }
+            });
+
+            $.ajax({
+                url: "./api/getStat4.php",
+                method: "GET",
+                success: function(data) {
+                    var data = JSON.parse(data)
+                    console.log(data)
+                    var stat4 = document.querySelector(".stat4");
+
+                    var divme = document.createElement("div")
+                    divme.innerText = data["Total_Folders_With_Zero_Items"];
+                    stat4.append(divme)
+
+                    var divme2 = document.createElement("div")
+                    divme2.innerText = data["Average_Number_of_Items"];
+                    stat4.append(divme2)
+
+                }
+            });
+
+            $.ajax({
+                url: "./api/getStat5.php",
+                method: "GET",
+                success: function(data) {
+                    var data = JSON.parse(data)
+                    console.log(data)
+                    var stat5 = document.querySelector(".stat5");
+
+                    var divme = document.createElement("div")
+                    divme.innerText = data["Total_Quizzes_With_Odd_Items"];
+                    stat5.append(divme)
+
+                    var divme2 = document.createElement("div")
+                    divme2.innerText = data["Average_Number_of_Quizzes_With_Odd_Items"];
+                    stat5.append(divme2)
+
+                }
+            });
+
+            $.ajax({
+                url: "./api/getStat6.php",
+                method: "GET",
+                success: function(data) {
+                    var data = JSON.parse(data)
+                    console.log(data)
+                    var stat6 = document.querySelector(".stat6");
+
+                    var divme = document.createElement("div")
+                    divme.innerText = data["Total_Quizzes_With_Even_Items"];
+                    stat6.append(divme)
+
+                    var divme2 = document.createElement("div")
+                    divme2.innerText = data["Average_Number_of_Quizzes_With_Even_Items"];
+                    stat6.append(divme2)
+
                 }
             });
         });

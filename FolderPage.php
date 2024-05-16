@@ -7,7 +7,7 @@
     <link href="https://fonts.cdnfonts.com/css/tt-norms-pro?styles=70921,70916,70923,70922,70915,70914,70918,70917,70920,70919,70909,70908,70913,70912,70907,70906,70911,70910" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
     <link href="./css/mainpagestyle.css" rel="stylesheet">
-    
+
     <link href="./css/folderstyles.css" rel="stylesheet">
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -20,7 +20,7 @@
 
 <body class="mainbody">
     <div class="mainhead">
-    <div class="center">
+        <div class="center">
             <div class="circle-container">
                 <div class="circle-1"></div>
             </div>
@@ -52,7 +52,7 @@
 
     <div class="mainFolderCont">
         <div class="cf1">
-            <a class="cfbtn" href = "mainpage.php">Back</a>
+            <a class="cfbtn" href="mainpage.php">Back</a>
             <div class="cf1i" style="display: none;">
                 <div class="placeHolder">Folder Id:</div>
                 <div class="placeHolder" style="display: none;" class="IdHold"></div>
@@ -90,7 +90,7 @@
                         </div>
 
                         <div class="mc1Holder2">
-                            <div  class="mc1HolderD1" >Description:</div>
+                            <div class="mc1HolderD1">Description:</div>
                             <textarea type="text" placeholder="Quiz Description" class="quizdescrip"></textarea>
                         </div>
 
@@ -109,7 +109,7 @@
 
 
                     <div class="addSub">
-                        <div class="EditFolderbut AddQuestion" >Ok</div>
+                        <div class="EditFolderbut AddQuestion">Ok</div>
                     </div>
 
                 </div>
@@ -125,7 +125,7 @@
                     <div class="eq">
                         <div class="eqHolder1">
                             <div class="eqHolderP1">Title:</div>
-                            <input type="text" placeholder="Quiz Title"class="quiztitleedit">
+                            <input type="text" placeholder="Quiz Title" class="quiztitleedit">
                         </div>
 
                         <div class="eqHolder2">
@@ -147,7 +147,7 @@
                     </div>
 
 
-                    <div class="addSub" >
+                    <div class="addSub">
                         <div class="EditFolderbut EditQuiz">Apply Changes</div>
                     </div>
 
@@ -303,8 +303,8 @@
                                                 var divcreate = document.createElement("div");
                                                 questionCont.append(divcreate);
 
-                                                divcreate.innerHTML = divcreate.innerHTML = 
-                                                `<div class="question-container">
+                                                divcreate.innerHTML = divcreate.innerHTML =
+                                                    `<div class="question-container">
                                                     <div class="question-header">
                                                         <div class="Qeditid">${hnd["Question_Id"]}</div>
                                                         <div class="question-label">Question:</div>
@@ -359,7 +359,7 @@
             $(".IdHold").text(localStorage.getItem("FolderId"))
             $(".NameHold").text(localStorage.getItem("FolderName"))
 
-            $(".Logbut").click(function(e){
+            $(".Logbut").click(function(e) {
                 window.location.href = "./login.php";
             })
 
@@ -607,17 +607,18 @@
 
                                                         for (var obb of optnlistme) {
                                                             console.log(obb);
-                                                            (function(obbo){$.ajax({
-                                                                url: "./api/addOptions.php",
-                                                                method: "POST",
-                                                                data: {
-                                                                    option: obbo,
-                                                                    QuestId: datpars
-                                                                },
-                                                                success: function(data) {
-
-                                                                }
-                                                            })})(obb);
+                                                            (function(obbo) {
+                                                                $.ajax({
+                                                                    url: "./api/addOptions.php",
+                                                                    method: "POST",
+                                                                    data: {
+                                                                        option: obbo,
+                                                                        QuestId: datpars
+                                                                    },
+                                                                    success: function(data) {
+                                                                    }
+                                                                })
+                                                            })(obb);
                                                         }
 
                                                     }
@@ -646,17 +647,36 @@
                                                     ans: answerme,
                                                     QuizId: dat
                                                 },
-                                                success: function(data) {}
+                                                success: function(data) {
+                                                    
+                                                }
                                             })
                                         }
                                     }
+                                    getAllQuiz();
                                 }
                             })
+
+
+                            $.ajax({
+                                url: "./api/updateNumItems.php",
+                                method: "POST",
+                                data: {
+                                    fid: localStorage.getItem("FolderId")
+                                },
+                                success: function(data) {
+                                    console.log("Update number of items success");
+                                },
+                                error: function() {
+                                    console.error("Error updating number of items.");
+                                }
+                            });
+
 
                             console.log(questiontitle.length)
 
                             $('#showTasks').modal('hide');
-                            getAllQuiz();
+                        
 
                         })
 
@@ -852,6 +872,7 @@
 
             $(".SubmitQuizme").click(function(e) {
                 if ($(".quiztitle").val().trim() == "" || $(".quizdescrip").val().trim() == "" || $(".quiztype").val().trim() == "---") {} else {
+                    console.log("Go")
                     $.ajax({
                         url: "./api/AddQuiz.php",
                         method: "POST",
@@ -867,6 +888,7 @@
                             getAllQuiz();
                         }
                     })
+
                 }
 
             })
