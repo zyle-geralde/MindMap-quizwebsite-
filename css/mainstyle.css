@@ -1,0 +1,377 @@
+*{ 
+    font-family: "TT Norms Pro", sans-serif;
+}
+
+.mainbody {
+    display: flex;
+    flex-direction: column;
+    /*min-height: 740px;*/
+    /*background-color:blanchedalmond;*/
+    width: 100%;
+    background-color: #302635;
+    overflow: auto;
+    margin: 0px;
+}
+
+/* .mainhead {
+    position: fixed;
+    top: 0px;
+    right: 0px;
+    left: 0px;
+    background: linear-gradient(to bottom, #835db5 0%, #381c5e 97%, #603F8B 100%);
+    height: 130px;
+    border-bottom-style: solid;
+    border-width: 10px;
+    border-bottom-color: #000000;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+} */
+
+.showquiz,
+.showquiz2 {
+    color: white;
+    ;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.fnameinpp {
+    height: 40px;
+    padding: 10px;
+    width: 320px;
+    border-radius: 50px;
+    border: 2px solid black;
+    margin-right: 10px;
+}
+
+.Submitbut {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 50px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+
+}
+
+.Logbut {
+    background-color: rgb(202, 16, 106);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    border-radius: 1000px;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    cursor: pointer;
+}
+
+.Logbut:hover {
+    width: 105px;
+}
+
+.Logbut:active {
+    transition: 0.0s;
+    background-color: rgb(136, 10, 71);
+}
+
+
+.Submitbut:hover {
+    height: 40px;
+    width: 58px;
+}
+
+.Submitbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.mainCont {
+    position: fixed;
+    top: 130px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    background-color: #feacd1;
+    padding-left: 20px;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.mainFolderCont {
+    margin-bottom: 170px;
+    margin-top: 170px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FolderCont {
+    flex: 1;
+    width: 100%;
+}
+
+.AddFolder,
+.AddQuiz {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 120px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 20px;
+}
+
+.AddFolder:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.AddFolder:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.AddQuiz:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.AddQuiz:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.AddFolderForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #A16AE8;
+    transition: 0.5s;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+}
+
+.qnameinp,
+.Eqnameinp,
+.Idinp {
+    height: 30px;
+    border-radius: 100px;
+    border-style: none;
+    font-size: 15px;
+}
+
+.qdecinp,
+.Eqdecinp {
+    width: 500px;
+    height: 150px;
+    border-radius: 20px;
+    padding: 10px;
+    border-style: none;
+    font-size: 15px;
+}
+
+.qtypeinp {
+    height: 30px;
+    border-radius: 100px;
+    border-style: none;
+    font-size: 15px;
+}
+
+.AddFolderbut,
+.EditFolderbut,
+.AddQuiz {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 120px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 20px;
+}
+
+.AddFolderbut:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.AddFolderbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.EditFolderbut:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.EditFolderbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+
+
+
+.CancelFolderbut {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 120px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 20px;
+}
+
+.CancelFolderbut:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.CancelFolderbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.FolderCont {
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    row-gap: 10px;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.QuizContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.folderItemcont {
+    margin: 10px 10px 10px 10px;
+    height: 250px;
+    background-color: #6C5A96;
+    border: 1px solid #F5F5DC;
+    box-shadow: 7px 7px 0px 0px #F5F5DC;
+    border-radius: 10px;
+    color: white;
+}
+
+.Foldname {
+    font-family: "TT Norms Pro", sans-serif;
+    font-weight: 800;
+    font-size: 40px;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: #F5F5DC;
+}
+
+.Folddesc {
+    color:black;
+    word-break: break-all;
+    height: 100px;
+    overflow-y: auto;
+    padding: 10px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #F8EBFF;
+    border-radius: 10px;
+}
+
+.numcont {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.numcount {
+    margin-left: 10px;
+}
+
+
+.addquest {
+    height: 600px;
+    width: 900px;
+    background-color: rgb(72, 1, 125);
+    border-radius: 50px;
+    border-style: double;
+    border-color: rgb(253, 70, 167);
+    border-width: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+

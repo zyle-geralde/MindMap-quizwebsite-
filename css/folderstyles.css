@@ -1,0 +1,753 @@
+*{
+    font-family: "TT Norms Pro", sans-serif;
+}
+
+.mainbody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    background-color: #302635;
+    overflow: auto;
+    margin: 0px;
+}
+
+.mainhead {
+    display: flex;
+    flex-direction: row;
+    height: 100px;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0 20px;
+    color: black;
+
+}
+
+.showquiz,
+.showquiz2 {
+    color: white;
+    ;
+    text-decoration: none;
+    margin-right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.fnameinpp {
+    height: 40px;
+    padding: 10px;
+    width: 150px;
+    border-radius: 50px;
+    border: 1px solid black;
+    margin-right: 10px;
+}
+
+.Submitbut {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 50px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+
+}
+
+.Logbut {
+    background-color: rgb(202, 16, 106);
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 100px;
+    height: 50px;
+    border-radius: 1000px;
+    color: white;
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    cursor: pointer;
+}
+
+.Logbut:hover {
+    width: 105px;
+}
+
+.Logbut:active {
+    transition: 0.0s;
+    background-color: rgb(136, 10, 71);
+}
+
+
+.Submitbut:hover {
+    height: 40px;
+    width: 58px;
+}
+
+.Submitbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.mainCont {
+    position: fixed;
+    top: 130px;
+    bottom: 0px;
+    left: 0px;
+    display: flex;
+    flex-direction: column;
+    width: 230px;
+    background-color: #feacd1;
+    padding-left: 20px;
+    justify-content: space-between;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.mainFolderCont {
+    margin-top: 170px;
+    margin-left: 10px;
+    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.FolderCont {
+    flex: 1;
+    width: 100%;
+}
+
+.AddFolder,
+.AddQuiz {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 120px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 20px;
+}
+
+.AddFolder:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.AddFolder:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.AddQuiz:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.AddQuiz:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.AddFolderForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #A16AE8;
+    transition: 0.5s;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+    color: white;
+}
+
+.qnameinp,
+.Eqnameinp,
+.Idinp {
+    height: 30px;
+    border-radius: 100px;
+    border-style: none;
+    font-size: 15px;
+}
+
+.qdecinp,
+.Eqdecinp {
+    width: 500px;
+    height: 150px;
+    border-radius: 20px;
+    padding: 10px;
+    border-style: none;
+    font-size: 15px;
+}
+
+.qtypeinp {
+    height: 30px;
+    border-radius: 100px;
+    border-style: none;
+    font-size: 15px;
+}
+
+.AddFolderbut,
+.EditFolderbut,
+.AddQuiz {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 120px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 20px;
+}
+
+.AddFolderbut:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.AddFolderbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.EditFolderbut:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.EditFolderbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+
+
+
+.CancelFolderbut {
+    background-color: rgb(210, 63, 151);
+    border-style: solid;
+    border-width: 2px;
+    border-color: white;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    width: 120px;
+    height: 39px;
+    color: rgb(255, 238, 253);
+    border-radius: 50px;
+    cursor: pointer;
+    transition: 0.2s;
+    font-family: 'Lilita One', sans-serif;
+    margin-bottom: 20px;
+}
+
+.CancelFolderbut:hover {
+    height: 40px;
+    width: 130px;
+}
+
+.CancelFolderbut:active {
+    transition: 0.0s;
+    background-color: rgb(233, 126, 190);
+}
+
+.FolderCont {
+    display: grid;
+    grid-template-columns: 400px 400px 400px;
+    row-gap: 10px;
+    column-gap: 10px;
+    justify-content: center;
+}
+
+.QuizContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.folderItemcont {
+    height: 250px;
+    background-color: #603F8B;
+    border-style: double;
+    border-width: 8px;
+    border-color: #f21f57;
+    border-radius: 10px;
+    color: white;
+}
+
+.Foldname {
+    font-size: 40px;
+    overflow-x: auto;
+    white-space: nowrap;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    color: blanchedalmond;
+}
+
+.Folddesc {
+    word-break: break-all;
+    height: 100px;
+    overflow-y: auto;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    background-color: #A16AE8;
+    border-radius: 10px;
+}
+
+.numcont {
+    display: flex;
+    flex-direction: row;
+    margin-right: 10px;
+    margin-left: 10px;
+}
+
+.numcount {
+    margin-left: 10px;
+}
+
+
+.addquest,
+.editquest {
+    height: 600px;
+    width: 900px;
+    background-color: #6C5A96;
+    border: 2px solid #f5f5dc !important; 
+    box-shadow: 5px 5px 0px 0px #f5f5dc;
+    border-radius: 50px;
+    border-width: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: auto;
+
+}
+
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+
+/* Divider */
+
+
+.mainFolderCont{
+    align-items: flex-start !important; 
+}
+
+.cf1{
+    display: flex; 
+    flex-direction: column; 
+    margin-left: 30px;
+}
+
+.cfbtn{
+    font-size: 20px; 
+    color: #f5f5dc;
+    background-color: #f4519f;
+    width: fit-content;
+    padding: 5px 20px; 
+    border-radius: 1000px; 
+    border-style: solid; 
+    border-color:#f5f5dc;
+    text-decoration: none;
+}
+
+.cf1i{
+    flex-direction: row; 
+    align-items: center;
+}
+
+.placeHolder{
+    font-size: 20px; color: rgb(255, 221, 227);
+}
+
+.folderName{
+    font-size: 20px; 
+    width: 500px; 
+    overflow-x: auto; 
+    white-space: nowrap; 
+    color: white;
+}
+
+
+.cf2{
+    display: flex; 
+    flex-direction: column; 
+    align-items: center; 
+    width: 100%;
+}
+
+.middleHeader{
+    display: flex; 
+    justify-content:space-between; 
+    flex-direction: row; 
+    align-items: center; 
+    width: 100%;
+    margin-top: 30px; 
+    width:850px;
+}
+
+.cf2i{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+}
+
+
+/* Divider */
+
+.modal .fade{
+    color: black;
+}
+
+.modal-dialog, .modal-dialog-centered{
+    max-width: fit-content;
+}
+
+.modal-content{
+    border-radius: 60px;
+}
+
+.addquest,
+.editquest {
+    position: fixed; /* Change from relative to fixed */
+    top: 50%; /* Move to 50% from top */
+    left: 50%; /* Move to 50% from left */
+    transform: translate(-50%, -50%); /* Translate back by 50% of its own width and height */
+    z-index: 9999;
+    padding: 20px; 
+    justify-content: space-between;
+}
+
+.mc1{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: 
+    space-between; 
+    width: 100%;
+}
+
+.mc1Holder{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    font-size: 15px; 
+}
+
+.mc1HolderD1,.mc1Holder2D1, .mc1Holder3D1{
+    margin-right: 10px; 
+    color: white; 
+    font-weight: bold;
+}
+
+.quiztitle{
+    border-radius: 100px;
+    height: 30px; 
+    width: 150px;
+}
+
+.mc1Holder2{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+    margin-top: 15px;
+}
+
+.quizdescrip{
+    border-radius: 5px;
+    height: 50px; 
+    width: 300px;
+}
+
+.mc1Holder3{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+}
+
+.quiztype{
+    border-radius: 100px;
+    height: 30px;
+}
+
+.Questcont{
+    width: 100%; 
+    margin-top: 30px;
+}
+
+.addSub{
+    padding: 10px;
+    display: flex; 
+    flex-direction: row; 
+    margin-top: 30px;
+}
+
+.EditFolderbut.AddQuestion{
+    margin-right: 20px; 
+    height: 50px; 
+    width:150px; 
+    margin-bottom: 0px;
+}
+
+
+.eq{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; 
+    width: 100%;
+}
+
+.eqHolder1, .eqHolder2{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center; 
+    font-size: 15px;
+}
+
+.eqHolderP1{
+    margin-right: 10px; 
+    color: white; 
+    font-weight: bold;
+}
+
+.quiztitleedit{
+    border-radius: 100px;
+    height: 30px;
+    width: 150px;
+}
+
+.editquest {
+    padding: 20px; 
+    justify-content: space-between;
+}
+
+.quizdescripedit{
+    border-radius: 5px;
+    height: 50px; 
+    width: 300px;
+}
+
+.eqHolder3{
+    display: flex; 
+    flex-direction: row; 
+    align-items: center;
+}
+
+.quiztypeedit{
+    border-radius: 100px;
+    height: 30px;
+}
+
+.Questcontedit{
+    width: 100%; 
+    margin-top: 30px;
+}
+
+.addSub{
+    display: flex; 
+    flex-direction: row; 
+    margin-top: 30px;
+}
+
+.EditFolderbut.EditQuiz{
+    padding: 10px;
+    text-align: center;
+    margin-right: 20px; 
+    height: 50px; 
+    width:150px; 
+    margin-bottom: 0px;
+}
+
+.holder{
+    margin-bottom: 2rem;
+}
+
+.quizCC{
+    height: 250px;
+    background-color: #6C5A96;
+    border: 2px solid #f5f5dc !important; 
+    box-shadow: 5px 5px 0px 0px #f5f5dc;
+    /* border-style: double;
+    border-width: 8px;
+    border-color: #f21f57; */
+    border-radius: 10px;
+    color: white; 
+    width: 900px; 
+    display: flex;
+    flex-direction: row;
+    border-bottom: 10rem;
+}
+
+.quizCCInner{
+    width: 70%; 
+    border-right-style: solid;
+    border-color:#f5f5dc; 
+    display: flex; 
+    flex-direction: column; 
+    /* justify-content: center; */
+}
+
+.OpenTaskhead{
+    display:flex; 
+    flex-direction:row; 
+    align-items:center
+}
+
+.quizCCName{
+    font-weight: 800;
+    overflow-y: auto; 
+    font-size: 40px;
+    color: #f5f5dc;
+    white-space:nowrap; 
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.OpenBodyQuiz{
+    color: black;
+    overflow-x: auto; 
+    font-size: 15px; 
+    margin-left: 10px; 
+    margin-top: 10px; 
+    height: 110px;
+    background-color: #F8EBFF; 
+    margin-right: 10px; 
+    word-break: break-all; 
+    border-radius: 5px; 
+    padding: 5px;
+}
+
+.quizCCInfo{
+    display: flex; 
+    flex-direction: row; 
+    justify-content: space-between; margin-right: 10px;
+    margin-top: 10px;
+}
+
+.displayF{
+    display: flex; 
+    flex-direction: row; 
+    margin-left: 10px;
+}
+
+.question-container {
+    height: 200px;
+    background-color: rgb(251, 144, 208);
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 30px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position:relative;
+}
+
+.question-header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.Qeditid {
+    display: none;
+    margin-left: 30px;
+}
+
+.question-label {
+    padding: 20px;
+    color:rgb(72, 1, 125);
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.QuestionEditName {
+    width: 600px;
+    margin-left: 20px;
+    border-radius: 1000px;
+    font-size: 18px;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.answer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.answer-header {
+    display: flex;
+    flex-direction: row;
+}
+
+.answer-label {
+    font-size: 20px;
+    color: rgb(72, 1, 125);
+    font-weight: bold;
+    width: 35px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.FlEditAns {
+    width: 300px;
+    margin-left: 20px;
+    border-radius: 1000px;
+    font-size: 20px;
+    height: 50px;
+    padding-left: 10px;
+    padding-right: 10px;
+}

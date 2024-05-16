@@ -1,0 +1,399 @@
+body {
+    margin: 0;
+    font-family: "TT Norms Pro", sans-serif;
+    width: 100%;
+    background-color: #302635;
+    overflow-y: scroll;
+    position: relative; /* Needed for the pseudo-element */
+}
+
+body::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url(https://web-static.hg-cdn.com/endfield/official/oversea/_next/static/media/blockTextureW.26de9170.jpg);
+    opacity: 0;
+    pointer-events: none; /* Ensures the pseudo-element does not interfere with other elements */
+    z-index: -1; /* Places the pseudo-element behind other content */
+}
+
+/*------------------------*/
+.header {
+    
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 20;
+    background: url("../images/header-texture.png") repeat-x center top -10px;
+    height: 108px;
+}
+
+.header-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 0px 20px 0px 20px;
+}
+
+.traverse {
+    font-family: "TT Norms Pro", sans-serif;
+    text-decoration: none;
+    color: rgb(38, 38, 38);
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.traverse2 {
+    font-family: "TT Norms Pro", sans-serif;
+    text-decoration: none;
+    color: #67729D;
+    font-weight: bold;
+    font-size: 14px;
+
+}
+
+.traverse3 {
+    font-family: "TT Norms Proto", sans-serif;
+    text-decoration: none;
+    color: rgb(38, 38, 38);
+    font-weight: bold;
+    font-size: 14px;
+    color: rgb(255, 255, 255);
+}
+
+.WebTitle {
+    font-family: "TT Norms Pro", sans-serif;
+    font-size: 30px;
+    font-weight: bold;
+    color: #67729D;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    pointer-events: none;
+}
+
+.Cpart1 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.Cpart2 {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.inalign1,
+.inalign2,
+.inalign3 {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 20px 20px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.traverse:hover {
+    color: #BB9CC0;
+}
+
+.traverse2:hover {
+    color:#BB9CC0;
+}
+
+.traverse3:hover {
+    color: #BB9CC0;
+}
+
+.Signdiv {
+    background-color: #BB9CC0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    transition: 0.2s;
+    margin-left: 20px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.Signdiv:hover {
+    background-color: #947a98;
+}
+
+
+/*topcont*/
+.TopPic {
+    height: 680px;
+    overflow: hidden;
+    position: relative;
+}
+
+.quote {
+    font-size: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: bold;
+    white-space: nowrap;
+    color: white;
+    text-align: center;
+}
+
+.hideimg {
+    z-index: 1;
+    position: absolute;
+    height: 1280px;
+    min-width: 1920px;
+}
+
+.blackbg {
+    z-index: 2;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    right: 0px;
+    left: 0px;
+    background-color: rgba(0, 0, 0, 0.373);
+}
+
+.subq {
+    font-size: 20px;
+    font-weight: normal;
+    word-break: break-all;
+    width: 545px;
+    color: white;
+    line-height: 30px;
+    margin: 20px;
+    text-align: center;
+}
+
+.posdiv {
+    position: absolute;
+    z-index: 3;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.hideimg {
+    overflow: hidden;
+    object-position: center;
+}
+
+/*----------*/
+.FeatureNav {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+
+.headFeatureNav {
+    padding-top: 70px;
+    font-family: 'TT Norms Pro', sans-serif;
+    font-weight: 1000; /* Regular weight */
+    font-size: 50px;
+    text-align: center;
+    margin-bottom: 60px;
+    color: rgb(255, 255, 255);
+    /* text-shadow: 2px 2px 4px #67729D;; */
+}
+
+.FeatureCont {
+    display: flex;
+    flex-direction: column;
+    padding: 10px 60px;
+    padding-top: 60px;
+    padding-right: 0px;
+    border-radius: 30px;
+    background-color: #fff8fc;
+    box-shadow: 5px 5px 10px rgb(125, 125, 125);
+}
+
+.ft1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 360px;
+    margin-right: 60px;
+}
+
+.ftimg {
+    border: 5px solid #000000;
+    box-shadow: 20px 20px 0px 0px #000000;
+    width: 250px;
+    height: 250px;
+}
+
+.fttitle {
+    border: 5px solid #000000;
+    box-shadow: 10px 10px 0px 0px #000000;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    margin-top: 25px;
+    background-color: #67729D;
+    color: white;
+    border-radius: 5px;
+    padding: 10px 10px;
+}
+.comp1{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+}
+
+/*new cont me*/
+
+.benifitcont{
+    background: linear-gradient(to bottom, #a0abd6 10%, #687fdc 80%, #1A2A4C 100%);
+    /* background-color:#a0abd6; */
+    padding: 80
+    px 0px;
+}
+
+.benifitcont:before{
+    width: 100%;
+    height: 124px;
+    content: "";
+    display: block;
+    position: relative;
+    left: 0;
+    top: 0;
+    z-index: 3;
+    background: url("../images/seperate1.png") repeat-x;
+}
+.f1ben{
+    padding-top: 5rem;
+    display: flex;
+    flex-direction: row;
+}
+.f2ben{
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+}
+.f3ben{
+    display: flex;
+    flex-direction: row;
+    margin-top: 60px;
+    padding-bottom: 5rem;
+}
+.benifitcont{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.benimage1,
+.benimage2{
+    border: 5px solid #000000;
+    box-shadow: 20px 20px 0px 0px #000000;
+}
+.benimage1{
+    width: 400px;
+    overflow: hidden;
+    object-position: center;
+    display: flex;
+    align-items: center;
+}
+.caption1{
+    width: 300px;
+    word-wrap: break-word;
+    padding-right: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+.benimage2{
+    width: 400px;
+    overflow: hidden;
+    object-position: center;
+    display: flex;
+    align-items: center;
+}
+.caption2{
+    width: 300px;
+    word-wrap: break-word;
+    padding-left: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: white;
+}
+.captitl{
+    font-weight: bolder;
+    font-size: 50px;
+    margin-bottom: 20px;
+    color: white;
+}
+.captdesc{
+    font-size: 25px;
+}
+
+.footer{
+    height: 50px;
+}
+
+
+
+/**/
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+
+::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 6px;
+}
+
+
+::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+.footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(12 12 13);
+    height: 70px;
+    color: white;
+    width: 100%;
+    position: relative; /* Added to make sure the :before element is positioned relative to .footer */
+}
+
+.benifitcont:after {
+    width: 100%;
+    height: 124px;
+    content: "";
+    display: block;
+    position: relative;
+    left: 0;
+    top: 40px;
+    background: url(../images/footer-texture.png) repeat-x;
+}
+
