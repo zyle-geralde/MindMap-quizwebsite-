@@ -50,7 +50,7 @@ include "connect.php"
 
     <div style="display: grid; grid-template-columns: 400px 400px; background-color: white; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px">
         <div>TOTAL NUMBER OF FOLDERS</div>
-        <div>AVG OF FOLDERS WITH </div>
+        <div>AVG OF FOLDERS WITH NO QUIZZES</div>
     </div>
 
     <div style="display: grid; grid-template-columns:  400px 400px; background-color: white;min-height:10px; row-gap:10px; column-gap:10px; border-radius:10px; padding:10px; margin-top: 20px" class="stat3">
